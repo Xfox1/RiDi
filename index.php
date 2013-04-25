@@ -253,13 +253,15 @@ Titolo: <input name = 'title'><br>
 	}
 	// Mostra l'elenco dei corsi
 	else {
-		echo "<a href = 'index.php?logout'>logout</a><br>";
-		echo "<a href = 'index.php?new'>Proponi un argomento!</a><pre>\n\n</pre>";
+		echo "<a href = 'index.php?logout'>Logout</a><br>";
+		echo "<a href = 'index.php?new'>Proponi un argomento!" .
+                    "</a><pre>\n\n</pre>";
 		echo "<b>Elenco argomenti:</b><br>\n";
-		$query = "SELECT id,title FROM topics";
-		$res = mysql_query ($query);
-		while ($row=mysql_fetch_row($res)) {
-			echo "<a href = 'index.php?show&tid={$row[0]}'>".htmlentities(utf8_decode($row[1]))."</a><br>";
+		$query = "SELECT id, title FROM topics";
+		$res = mysql_query($query);
+		while (($row = mysql_fetch_row($res))) {
+			echo "<a href = 'index.php?show&tid={$row[0]}'>" .
+			    htmlentities(utf8_decode($row[1])) . "</a><br>";
 		}
 	}
 	
