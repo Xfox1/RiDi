@@ -17,14 +17,14 @@
 #
 #
 
-.PHONY: install
+.PHONY: install_nginx_debian
 
 INSTALL = install -o root -g root
 INSTALL_PHP = install -o root -g www-data -m 440
 CSSDIR = /usr/share/nginx/www/css
 PHPDIR = /usr/share/nginx/www/RiDi
 
-install:
+install_nginx_debian:
 	$(INSTALL) -m 555 -d $(PHPDIR)
 	$(INSTALL_PHP) index.php $(PHPDIR)
 	test -f $(PHPDIR)/mysql.php || $(INSTALL_PHP) mysql.php $(PHPDIR)
