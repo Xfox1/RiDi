@@ -17,12 +17,16 @@
 #
 #
 
-.PHONY: install_nginx_debian
+.PHONY: all install_nginx_debian
 
 INSTALL = install -o root -g root
 INSTALL_PHP = install -o root -g www-data -m 440
 CSSDIR = /usr/share/nginx/www/css
 PHPDIR = /usr/share/nginx/www/RiDi
+
+all:
+	@echo "Available targets:"
+	@echo "  install_nginx_debian - install on nginx and debian"
 
 install_nginx_debian:
 	$(INSTALL) -m 555 -d $(PHPDIR)
