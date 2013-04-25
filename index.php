@@ -260,8 +260,13 @@ Titolo: <input name = 'title'><br>
 		$query = "SELECT id, title FROM topics";
 		$res = mysql_query($query);
 		while (($row = mysql_fetch_row($res))) {
+			$tid = intval($row[0]);
+			$title = htmlentities(utf8_decode($row[1]));
+			$query = "SELECT COUNT(*) FROM selected " .
+			    "WHERE tid = {$tid}";
+			$count = intval(mysql_fetch_row(mysql_query($query)));
 			echo "<a href = 'index.php?show&tid={$row[0]}'>" .
-			    htmlentities(utf8_decode($row[1])) . "</a><br>";
+			    $title . "</a> [{$count} iscritti]<br>";
 		}
 	}
 	
