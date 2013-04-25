@@ -19,9 +19,14 @@
 
 .PHONY: install
 
-INSTALL = install -o root -g www-data -m 440
-WWW = /usr/share/nginx/www
+INSTALL = install -o root -g root
+INSTALL_PHP = install -o root -g www-data -m 440
+CSSDIR = /usr/share/nginx/www/css
+PHPDIR = /usr/share/nginx/www/RiDi
 
 install:
-	$(INSTALL) index.php $(WWW)
-	test -f $(WWW)/mysql.php || $(INSTALL) mysql.php $(WWW)
+	$(INSTALL) -m 555 -d $(PHPDIR)
+	$(INSTALL_PHP) index.php $(PHPDIR)
+	test -f $(PHPDIR)/mysql.php || $(INSTALL_PHP) mysql.php $(PHPDIR)
+	$(INSTALL) -m 555 -d $(CSSDIR)
+	$(INSTALL) -m 444 RiDi.css $(CSSDIR)
